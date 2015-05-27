@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+/*
 var port = process.env.PORT || 3000;
 
 app.get('*', function(req, res) {
@@ -31,7 +31,7 @@ app.get('*', function(req, res) {
 app.listen(port, function() {
     console.log('Listening on ' + port);
 });
-
+*/
 //mounting api router to api path
 app.use('/api', api);
 //app.use('/auth', authenticate);
