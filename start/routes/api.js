@@ -1,23 +1,30 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
+var Post = mongoose.model('Post');
 
-//middleware
-router.use(function (req, res, next) {
+//used for routes that must be authenticated
+function isAuthenticated(req, res, next) {
 
+	// if user is authenticated in the session, call the next() to call the next request handler 
+	// Passport adds this method to request object. A middleware is allowed to add properties to
+	// request and response objects
+
+	//allow all get request methods	
 	if (req.method === "GET") {
-		//continue to next middleware or request handler
 		return next();
 	}
 
-	if (!req.isAuthenticated()) {
-		//user not authenticated, redirect to login page
-		return res.redirect('/#login');
-	}
+	if (req.isAuthenticated() {
+		return next();
+	})
 
-	//user authenticated continue to next middleware or handler
-	return next();
-});
+	//user is not authenticated... redirect to login page
+	return res.redirect('/#login');
+}
 
+//regisering authentication middleware
+router.use('/posts', isAuthenticated);
 router.route('/posts')
 
 	//get all posts
