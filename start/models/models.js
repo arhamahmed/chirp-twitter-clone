@@ -1,18 +1,17 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 
-var postSchema = new mongoose.Schema({
-	created_by: { type: Schema.ObjectId, ref: 'User' },		//should be changed to ObjectId, ref "User"
-	created_at: {type: Date, default: Date.now},
-	text: String
+var userSchema = new mongoose.Schema ({
+	username: String,
+	password: String, //hash from pass
+	created_at: {type: Date, default: Date.now}
 });
 
-var userSchema = new mongoose.Schema({
-	username: String,
-	password: String, //hash created from password
+var postSchema = new mongoose.Schema({
+	text: String,
+	created_by: String,
 	created_at: {type: Date, default: Date.now}
-})
+});
 
-
-mongoose.model('Post', postSchema);
-mongoose.model('User', userSchema);
+//declare a model called User which has schema userScehma
+mongoose.model("User", userSchema);
+mongoose.model("Post", postSchema);
