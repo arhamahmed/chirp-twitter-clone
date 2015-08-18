@@ -1,4 +1,4 @@
-var app = angular.module('chirpApp', []);
+var app = angular.module('chirpApp', ['ngRoute']);
 
 //using the correct controller where necessary
 app.config(function($routeProvider){
